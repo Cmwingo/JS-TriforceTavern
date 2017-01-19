@@ -4,13 +4,13 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'keg-list',
   template: `
-  <ul>
-    <li *ngFor="let currentKeg of childKegList">
+  <div class="keg-list">
+    <div *ngFor="let currentKeg of childKegList" class="keg">
       <button (click)="sellButtonClicked(currentKeg)">Sell Pint</button>
-      {{currentKeg.name}} {{currentKeg.brand}} -- $ {{currentKeg.price}} | {{currentKeg.alcoholContent}}% ABV (Pints Left: {{currentKeg.pints}})
+      <p>{{currentKeg.name}} {{currentKeg.brand}} </p><p *ngIf="currentKeg.price > 5" style="color:red">$ {{currentKeg.price}}</p><p *ngIf="currentKeg.price <= 5">$ {{currentKeg.price}}</p> <p>{{currentKeg.alcoholContent}}% ABV (Pints Left: {{currentKeg.pints}})</p>
       <button (click)="editButtonHasBeenClicked(currentKeg)">Edit!</button>
-    </li>
-  </ul>
+    </div>
+  </div>
   `
 })
 

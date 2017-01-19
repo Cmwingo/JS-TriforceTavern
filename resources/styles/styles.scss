@@ -1,0 +1,26 @@
+.keg-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.keg {
+  border: solid 3px rgba(92, 102, 172, 0.68);
+  margin: 3%;
+  padding: 3%;
+  flex: 1;
+  transition: all 300ms;
+  &:hover {
+    transform: scale(1.1);
+    background-color: lightblue;
+    border: none;
+  }
+}
+
+button {
+  background-color: gray;
+  border: none;
+  &:hover {
+    background-color: lightblue;
+  }
+}
