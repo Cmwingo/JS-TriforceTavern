@@ -6,15 +6,15 @@ import { Keg } from './keg.model';
   template: `
   <div class="container">
     <h1>Triforce Tavern</h1>
-    <ul>
-      <li *ngFor="let currentKeg of masterKegList">{{currentKeg.name}} {{currentKeg.brand}} -- $ {{currentKeg.price}} | {{currentKeg.alcoholContent}}% ABV</li>
-    </ul>
+    <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)"></keg-list>
+    <edit-keg [childSelectedKeg]="selectedKeg" (doneButtonClickedSender)="finishedEditing()"></edit-keg>
     <new-keg (newKegSender)="addKeg($event)"></new-keg>
   </div>
   `
 })
 
 export class AppComponent {
+  selectedKeg: Keg = null;
   masterKegList: Keg[] = [
       new Keg('Lil Sumpin Ale', 'Lagunitas', 4.00, 8.7),
       new Keg('Hefeweissen', 'Blue Moon', 3.00, 6.3),
@@ -23,5 +23,13 @@ export class AppComponent {
 
   addKeg(newKegFromChild: Keg) {
     this.masterKegList.push(newKegFromChild);
+  }
+
+  editKeg(clickedKeg) {
+    this.selectedKeg = clickedKeg;
+  }
+
+  finishedEditing() {
+    this.selectedKeg = null;
   }
 }
