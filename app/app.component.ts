@@ -6,6 +6,7 @@ import { Keg } from './keg.model';
   template: `
   <div class="container">
     <h1>Triforce Tavern</h1>
+    <h2>Cash Total: {{cash | currency:'USD':true}}</h2>
     <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)" (sellClickSender)="sellPint($event)"></keg-list>
     <edit-keg [childSelectedKeg]="selectedKeg" (doneButtonClickedSender)="finishedEditing()"></edit-keg>
     <new-keg (newKegSender)="addKeg($event)"></new-keg>
@@ -14,6 +15,7 @@ import { Keg } from './keg.model';
 })
 
 export class AppComponent {
+  cash: number = 0;
   selectedKeg: Keg = null;
   masterKegList: Keg[] = [
       new Keg('Lil Sumpin Ale', 'Lagunitas', 6.00, 8.7),
@@ -35,5 +37,6 @@ export class AppComponent {
 
   sellPint(clickedKeg) {
     clickedKeg.pints -= 1;
+    this.cash += clickedKeg.price;
   }
 }

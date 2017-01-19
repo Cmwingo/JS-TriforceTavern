@@ -11,7 +11,7 @@ import { Keg } from './keg.model';
   <div class="keg-list">
     <div *ngFor="let currentKeg of childKegList | fullness:filterByFullness" class="keg">
       <button (click)="sellButtonClicked(currentKeg)">Sell Pint</button>
-      <p *ngIf="currentKeg.alcoholContent > 6.8" style="color:red">{{currentKeg.name}}</p> <p *ngIf="currentKeg.alcoholContent <= 6.8">{{currentKeg.name}}</p> <p>{{currentKeg.brand}} </p><p *ngIf="currentKeg.price > 5" style="color:green">$ {{currentKeg.price}}</p><p *ngIf="currentKeg.price <= 5">$ {{currentKeg.price}}</p> <p>{{currentKeg.alcoholContent}}% ABV (Pints Left: {{currentKeg.pints}})</p>
+      <p *ngIf="currentKeg.alcoholContent > 6.8" style="color:red">{{currentKeg.brand}} {{currentKeg.name}}</p> <p *ngIf="currentKeg.alcoholContent <= 6.8">{{currentKeg.brand}} {{currentKeg.name}}</p><p *ngIf="currentKeg.price > 5" style="background-color:rgb(129, 244, 106)">$ {{currentKeg.price}}</p><p *ngIf="currentKeg.price <= 5">$ {{currentKeg.price}}</p> <p>{{currentKeg.alcoholContent}}% ABV</p> <p>(Pints Left: {{currentKeg.pints}})</p>
       <button (click)="editButtonHasBeenClicked(currentKeg)">Edit!</button>
     </div>
   </div>
