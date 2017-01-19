@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Keg } from './keg.model';
 
 @Component({
   selector: 'app-root',
@@ -6,20 +7,21 @@ import { Component } from '@angular/core';
   <div class="container">
     <h1>Triforce Tavern</h1>
     <ul>
-      <li *ngFor="let currentKeg of kegs">{{currentKeg.name}} {{currentKeg.brand}}</li>
+      <li *ngFor="let currentKeg of masterKegList">{{currentKeg.name}} {{currentKeg.brand}} -- $ {{currentKeg.price}} | {{currentKeg.alcoholContent}}% ABV</li>
     </ul>
+    <new-keg (newKegSender)="addKeg($event)"></new-keg>
   </div>
   `
 })
 
 export class AppComponent {
-  kegs: Keg[] = [
-      new Keg('Lil Sumpin Ale', 'Lagunitas', 4, 8.7),
-      new Keg('Hefeweissen', 'Blue Moon', 3, 6.3),
-      new Keg('Cherry Wheat', 'Samuel Adams', 3.5, 5.6)
+  masterKegList: Keg[] = [
+      new Keg('Lil Sumpin Ale', 'Lagunitas', 4.00, 8.7),
+      new Keg('Hefeweissen', 'Blue Moon', 3.00, 6.3),
+      new Keg('Cherry Wheat', 'Samuel Adams', 3.50, 5.6)
     ];
-}
 
-export class Keg {
-  constructor(public name: string, public brand: string, public price: number, public alcoholContent: number) {}
+  addKeg(newKegFromChild: Keg) {
+    this.masterKegList.push(newKegFromChild);
+  }
 }
