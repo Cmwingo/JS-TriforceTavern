@@ -15,7 +15,7 @@ import { Keg } from './keg.model';
 })
 
 export class AppComponent {
-  cash: number = 0;
+  cash: number = 0.00;
   selectedKeg: Keg = null;
   masterKegList: Keg[] = [
       new Keg('Lil Sumpin Ale', 'Lagunitas', 6.00, 8.7),
@@ -37,6 +37,7 @@ export class AppComponent {
 
   sellPint(clickedKeg) {
     clickedKeg.pints -= 1;
-    this.cash += parseInt(clickedKeg.price); //Apparantly arguments are passed as strings...who knew?
+    console.log(clickedKeg.price);
+    this.cash += parseFloat(clickedKeg.price); //Apparantly arguments are passed as strings...who knew?
   }
 }
