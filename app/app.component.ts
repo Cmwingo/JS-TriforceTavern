@@ -37,6 +37,6 @@ export class AppComponent {
 
   sellPint(clickedKeg) {
     clickedKeg.pints -= 1;
-    this.cash += clickedKeg.price;
+    this.cash += parseInt(clickedKeg.price);
   }
 }
