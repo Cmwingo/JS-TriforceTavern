@@ -10,9 +10,14 @@ import { Keg } from './keg.model';
   </select>
   <div class="keg-list">
     <div *ngFor="let currentKeg of childKegList | fullness:filterByFullness" class="keg">
-      <button (click)="sellButtonClicked(currentKeg)">Sell Pint</button>
-      <p *ngIf="currentKeg.alcoholContent > 6.8" style="color:red">{{currentKeg.brand}} {{currentKeg.name}}</p> <p *ngIf="currentKeg.alcoholContent <= 6.8">{{currentKeg.brand}} {{currentKeg.name}}</p><p *ngIf="currentKeg.price > 5" style="background-color:rgb(129, 244, 106)">$ {{currentKeg.price}}</p><p *ngIf="currentKeg.price <= 5">$ {{currentKeg.price}}</p> <p>{{currentKeg.alcoholContent}}% ABV</p> <p>(Pints Left: {{currentKeg.pints}})</p>
-      <button (click)="editButtonHasBeenClicked(currentKeg)">Edit!</button>
+      <p class="keg-list-title high-alcohol" *ngIf="currentKeg.alcoholContent > 6.8"> {{currentKeg.brand}} {{currentKeg.name}}</p>
+      <p class="keg-list-title" *ngIf="currentKeg.alcoholContent <= 6.8">{{currentKeg.brand}} {{currentKeg.name}}</p>
+      <p>{{currentKeg.alcoholContent}}% ABV</p>
+      <p *ngIf="currentKeg.price > 5" style="font-weight:bold"> {{currentKeg.price | currency:'USD':true}}</p>
+      <p *ngIf="currentKeg.price <= 5">{{currentKeg.price | currency:'USD':true}}</p>
+      <button class="sell-button" (click)="sellButtonClicked(currentKeg)">Sell Pint</button>
+      <p>(Pints Left: {{currentKeg.pints}})</p>
+      <button class="edit-button"(click)="editButtonHasBeenClicked(currentKeg)">Edit!</button>
     </div>
   </div>
   `

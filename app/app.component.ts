@@ -6,7 +6,7 @@ import { Keg } from './keg.model';
   template: `
   <div class="container">
     <h1>Triforce Tavern</h1>
-    <h2>Cash Total: {{cash | currency:'USD':true}}</h2>
+    <h2 class="cash">Cash Total: {{cash | currency:'USD':true}}</h2>
     <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)" (sellClickSender)="sellPint($event)"></keg-list>
     <edit-keg [childSelectedKeg]="selectedKeg" (doneButtonClickedSender)="finishedEditing()"></edit-keg>
     <new-keg (newKegSender)="addKeg($event)"></new-keg>
